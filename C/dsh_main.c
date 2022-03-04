@@ -13,8 +13,8 @@
 #define WIN_HEIGHT 40
 #define WIN_WIDTH 65
 #define WIN1_START_X 10
-#define WIN2_START_X (WIN1_START_X + WIN_WIDTH + 20)
 #define WIN_START_Y 10
+//this solution uses SCREEN
 void catFile(int session, int outputNum){
 
     //command from pdf:
@@ -74,13 +74,10 @@ int checkDirectory(){
     
 }
 int main(int argc, char** argv) {
-    char *line=0;
-    size_t size=0;
-
     initscr(); //initialize screen
     cbreak();
     noecho();
-    mvwprintw(stdscr, WIN_START_Y - 2, WIN1_START_X, "%s", "Typing Window"); //create window
+    mvwprintw(stdscr, WIN_START_Y - 2, WIN1_START_X, "%s", "INPUT WINDOW"); //create window
     WINDOW *input = newwin(WIN_HEIGHT, WIN_WIDTH, WIN_START_Y, WIN1_START_X);
     refresh();
     int topX = 1;
@@ -93,7 +90,6 @@ int main(int argc, char** argv) {
     wrefresh(input);
     keypad(input, true);
     int inputChar = 0;
-    // int prevChar = 0;
     char commandArray[100][50];//array for storing commands
     mvwprintw(input,orig_y,orig_x,"%s", "dsh> ");
     char buf[50] = {""}; //array for storing what is typed
